@@ -85,9 +85,9 @@ public class GamePanel extends JPanel implements ActionListener{
     }
 
     private void moveLeft() {
-       Card c;
+      Card c;
         for (int i=0;i<4;i++){
-            for (int j=0;j<4;j++){
+            for (int j=1;j<4;j++){
                 c=cards[i][j];
 
                 if (c.num!=0){
@@ -101,7 +101,7 @@ public class GamePanel extends JPanel implements ActionListener{
 
     private void moveDown() {
         Card c;
-        for (int i=0;i<3;i++){
+        for (int i=0;i<4;i++){
             for (int j=0;j<4;j++){
                 c=cards[i][j];
 
@@ -115,9 +115,9 @@ public class GamePanel extends JPanel implements ActionListener{
 
 
     private void moveRight() {
-        Card c;
+       Card c;
         for (int i=0;i<4;i++){
-            for (int j=0;j<3;j++){
+            for (int j=0;j<4;j++){
                 c=cards[i][j];
 
                 if (c.num!=0){

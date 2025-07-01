@@ -99,27 +99,16 @@ if (num != 0) {
     }
 
 	public void moveCLeft(Card[][] cards) {
-    if (j == 0) return;
+if (j == 0) return;
 
-    Card prev = cards[i][j - 1];
+    Card prev = cards[i][j-1];
     if (prev.num == 0) {
-        // 交换数字
         int tmp = this.num;
         this.num = prev.num;
         prev.num = tmp;
-        
-        // 更新数组位置
-        cards[i][j] = prev;
-        cards[i][j - 1] = this;
-        
-        // 更新索引
-        prev.j = j;
-        this.j = j - 1;
-        
-        // 继续向左移动
-        this.moveCLeft(cards);
+        prev.moveCLeft(cards);
     } else if (prev.num == this.num) {
-        prev.num *= 2;
+        prev.num = this.num * 2;
         this.num = 0;
     }
 }
@@ -127,25 +116,14 @@ if (num != 0) {
 public void moveCRight(Card[][] cards) {
     if (j == 3) return;
 
-    Card next = cards[i][j + 1];
-    if (next.num == 0) {
-        // 交换数字
+    Card prev = cards[i][j+1];
+    if (prev.num == 0) {
         int tmp = this.num;
-        this.num = next.num;
-        next.num = tmp;
-        
-        // 更新数组位置
-        cards[i][j] = next;
-        cards[i][j + 1] = this;
-        
-        // 更新索引
-        next.j = j;
-        this.j = j + 1;
-        
-        // 继续向右移动
-        this.moveCRight(cards);
-    } else if (next.num == this.num) {
-        next.num *= 2;
+        this.num = prev.num;
+        prev.num = tmp;
+        prev.moveCRight(cards);
+    } else if (prev.num == this.num) {
+        prev.num = this.num * 2;
         this.num = 0;
     }
 }
@@ -153,30 +131,18 @@ public void moveCRight(Card[][] cards) {
 public void moveCDown(Card[][] cards) {
     if (i == 3) return;
 
-    Card next = cards[i + 1][j];
-    if (next.num == 0) {
-        // 交换数字
+    Card prev = cards[i + 1][j];
+    if (prev.num == 0) {
         int tmp = this.num;
-        this.num = next.num;
-        next.num = tmp;
-        
-        // 更新数组位置
-        cards[i][j] = next;
-        cards[i + 1][j] = this;
-        
-        // 更新索引
-        next.i = i;
-        this.i = i + 1;
-        
-        // 继续向下移动
-        this.moveCDown(cards);
-    } else if (next.num == this.num) {
-        next.num *= 2;
+        this.num = prev.num;
+        prev.num = tmp;
+        prev.moveCDown(cards);
+    } else if (prev.num == this.num) {
+        prev.num = this.num * 2;
         this.num = 0;
     }
 }
 
-// 向上移动保持原有逻辑（相对完整）
 public void moveCTop(Card[][] cards) {
     if (i == 0) return;
 
@@ -185,15 +151,6 @@ public void moveCTop(Card[][] cards) {
         int tmp = this.num;
         this.num = prev.num;
         prev.num = tmp;
-        
-        // 更新数组位置
-        cards[i][j] = prev;
-        cards[i - 1][j] = this;
-        
-        // 更新索引
-        prev.i = i;
-        this.i = i - 1;
-        
         prev.moveCTop(cards);
     } else if (prev.num == this.num) {
         prev.num = this.num * 2;
